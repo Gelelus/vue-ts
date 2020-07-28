@@ -8,7 +8,7 @@
         <button class="btn-detail" @click="detail">Detail information</button>
       </div>
     </div>
-    <div v-if="mode === 'holiday'">
+    <div v-if="mode === 'holiday'" @click="showDialog">
       <div class="name-holiday">{{ data.holiday.name }}</div>
     </div>
     <div v-if="mode === 'todosList'">
@@ -29,6 +29,8 @@ import { Component, Vue } from "vue-property-decorator";
 
 import { Todo } from "../../store/modules/todo/types";
 import { Holiday } from "../../views/calendar/types";
+import { Mutation } from "vuex-class";
+import { ActionMutationType } from "../../store/types";
 
 @Component({})
 export default class AppPopUpWindow extends Vue {
@@ -38,6 +40,9 @@ export default class AppPopUpWindow extends Vue {
   mode = "";
   data: Todo | Holiday | Todo[] = [];
   zIndex = -100;
+
+  @Mutation("showDialog") showDialog!: ActionMutationType;
+
   close() {
     this.opacity = 0;
     this.zIndex = -100;
@@ -118,6 +123,12 @@ export default class AppPopUpWindow extends Vue {
   .name-holiday {
     color: rgb(105, 8, 8);
     text-align: center;
+    cursor: pointer;
+    transition: 0.5s background-color;
+  }
+
+  .name-holiday:hover {
+    background-color: rgb(250, 246, 240);
   }
 }
 </style>

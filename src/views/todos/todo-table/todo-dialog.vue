@@ -66,7 +66,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch, Prop } from "vue-property-decorator";
+import { Component, Vue, Watch } from "vue-property-decorator";
 import { Getter, Action, Mutation } from "vuex-class";
 
 import { Todo } from "../../../store/modules/todo/types";
@@ -83,7 +83,7 @@ export default class AppTodoDetail extends Vue {
   selectType = "Common";
   datePicker = false;
   correct = true;
-  
+
   get formTitle() {
     return !this.edited ? "New Todo" : "Edit Todo";
   }
